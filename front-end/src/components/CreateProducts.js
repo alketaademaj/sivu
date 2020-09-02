@@ -58,12 +58,13 @@ export class CreateProducts extends Component {
         console.log(product);
         axios.post("http://localhost:3000/products/add",product)
         .then(res=>console.log(res.data))
-        .catch(err=>console.log(`Error :${err}`));
+        .catch(err=>console.log(`Error :${err}`)); //YAAAAY 
     }
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <h3>Create New Product</h3>
+                <form className="mt-4 text-left" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="productname">Product name:</label>
                         <input type="text" className="form-control" id="productname" placeholder="Product name" onChange={this.onProductnameChange} />
@@ -73,15 +74,15 @@ export class CreateProducts extends Component {
                         <input type="number" className="form-control" id="price" placeholder="Price" onChange={this.onPriceChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="color">Colour</label>
+                        <label htmlFor="color">Colour:</label>
                         <input type="text" className="form-control" id="color" placeholder="Color" onChange={this.onColorChange}/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="stock">Stock</label>
+                        <label htmlFor="stock">Stock:</label>
                         <input type="number" className="form-control" id="stock" placeholder="Stock" onChange={this.onStockChange}/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="size">Size</label>
+                        <label htmlFor="size">Size:</label>
                         <input type="text" className="form-control" id="size" placeholder="Size" onChange={this.onSizeChange}/>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>

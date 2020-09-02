@@ -2,12 +2,12 @@
 
 //importing these packages, so that we can use them
 // import cors from 'cors';
-// import express from 'express';
+// import express from 'express'; Cannot use import statement outside a module, therefore turn it into a variable :) 
 // import mongoose from 'mongoose';
 // import bodyParser from 'body-parser';
-const cors=require('cors');
+const cors=require('cors'); // ^^like dis :) 
 const express=require('express');
-const mongoose=require('mongoose');
+const mongoose=require('mongoose'); 
 
 require('dotenv').config();
 //we are creating instances of express and router

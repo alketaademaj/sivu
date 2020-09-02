@@ -24,6 +24,7 @@ export class Navbar extends Component {
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                             <Link className="dropdown-item nav-link" to="/new-arrivals">New Arrivals</Link>
                             <Link className="dropdown-item nav-link" to="/sales">Sales</Link>
+                            <Link className="dropdown-item nav-link" to="/products">Products</Link>
                         </div>
                     </li>
                     </ul>

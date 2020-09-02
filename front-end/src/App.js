@@ -21,16 +21,15 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <div className="container-fluid">
+      {/* <div className="container-fluid"> */}
         <Navbar />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p> Hello World! </p>
         <Route path ="/" exact component = {ProductsList} />
         <Route path ="/new-arrivals" component = {NewArrivals} />
         <Route path ="/sales" component = {Sales} />
         <Route path ="/about" component = {About} />
         <Route path ="/products" component = {CreateProducts} />
-      </div>
+        <img src={logo} className="App-logo" alt="logo" />
+      {/* </div> */}
     </div>
     </Router>
   );

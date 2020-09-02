@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./",
-    "test": "jest -i --verbose --coverage --runInBand",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dboff": "killall mongod",
     "watch": "nodemon index.js",
-    "dbon": "mkdir -p ./db && mongod --dbpath ./db",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dbon": "mkdir -p ./db && mongod --dbpath ./db"
   },
   "author": "",
   "license": "ISC",
