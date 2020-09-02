@@ -49,7 +49,7 @@ export class ProductsList extends Component {
 
     ShowingProductList(){
         return this.state.products.map(currentProduct => {
-            return <Tanay product={currentProduct} deleteProducts={this.deleteProducts} key={currentProduct._id} />;
+            return <Tanay product={currentProduct} deleteProducts={this.deletetheseProducts} key={currentProduct._id} />;
         })
     }
 
