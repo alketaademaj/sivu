@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from "axios";
 
 export class CreateProducts extends Component {
     constructor(props) {
@@ -55,6 +56,9 @@ export class CreateProducts extends Component {
             stock:this.state.stock
         }
         console.log(product);
+        axios.post("http://localhost:3000/products/add",product)
+        .then(res=>console.log(res.data))
+        .catch(err=>console.log(`Error :${err}`));
     }
     render() {
         return (
