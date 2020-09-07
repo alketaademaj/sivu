@@ -10,6 +10,7 @@ import NewArrivals from './components/new-arrivals';
 import Sales from './components/sales';
 import About from './components/about';
 import CreateProducts from './components/CreateProducts';
+import submitResponse from './components/submitResponse';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -28,6 +29,7 @@ function App() {
         <Route path ="/sales" component = {Sales} />
         <Route path ="/about" component = {About} />
         <Route path ="/products" component = {CreateProducts} />
+        <Route path="/submitResponse" component={submitResponse} />
         <img src={logo} className="App-logo" alt="logo" />
       {/* </div> */}
     </div>

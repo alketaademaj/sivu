@@ -48,7 +48,7 @@ export class ProductsList extends Component {
     }
 
     ShowingProductList(){
-        return this.state.products.map(currentProduct => {
+        return this.state.products.filter(currentProduct => currentProduct.discountPercentage===0).map(currentProduct => {
             return <Tanay product={currentProduct} deleteProducts={this.deletetheseProducts} key={currentProduct._id} />;
         })
     }

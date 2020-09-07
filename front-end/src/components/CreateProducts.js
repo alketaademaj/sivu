@@ -107,7 +107,7 @@ export class CreateProducts extends Component {
                 </form>
             </div>
         )
-    }
+}
 }
 
 export default CreateProducts
