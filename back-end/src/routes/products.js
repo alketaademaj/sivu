@@ -22,11 +22,12 @@ router.route('/:id').delete((req, res) => {
 router.route('/add').post((req, res) => {
     const name = req.body.name;
     const price = req.body.price;
+    const discountPercentage = req.body.discountPercentage;
     const color=req.body.color;
     const size = req.body.size;
     const stock = req.body.stock;
 
-    const newProduct = new Product({name,price,color,stock,size});
+    const newProduct = new Product({name,price,discountPercentage,color,stock,size});
 
     newProduct.save()
         .then(() => res.json('Product added!'))

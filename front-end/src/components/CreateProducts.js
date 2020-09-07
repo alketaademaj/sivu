@@ -5,52 +5,66 @@ export class CreateProducts extends Component {
     constructor(props) {
         super(props)
 
-        this.onProductnameChange = this.onProductnameChange.bind(this);
-        this.onPriceChange=this.onPriceChange.bind(this);
-        this.onColorChange=this.onColorChange.bind(this);
-        this.onSizeChange=this.onSizeChange.bind(this);
-        this.onStockChange=this.onStockChange.bind(this);
-        this.onSubmit=this.onSubmit.bind(this);
+        //when ever we define a component / every component has a state that we define in the constructor 
+        //the state is accesible in that component 
+
+        //this.onProductnameChange = this.onProductnameChange.bind(this);
+        //this.onPriceChange=this.onPriceChange.bind(this);
+        //this.onDiscountChange=this.onDiscountChange(this);
+        //this.onColorChange=this.onColorChange.bind(this);
+        //this.onSizeChange=this.onSizeChange.bind(this);
+        //this.onStockChange=this.onStockChange.bind(this);
+        //this.onSubmit=this.onSubmit.bind(this);
+        //no need for binding, if we turn our methods into error function 
+        //you have to write everything down dont you!!!!
         
         this.state = {
              productname:"",
              price:0,
+             discountPercentage: 0,
              color:"",
              stock:0,
              size:"",
         }
     }
-    onProductnameChange(e){
+    onProductnameChange=(e)=>{
         this.setState({
             productname:e.target.value,
         })
     }
-    onPriceChange(e){
+    onPriceChange=(e)=>{
         this.setState({
             price:e.target.value,
         })
     }
-    onColorChange(e){
+    onColorChange=(e)=>{
         this.setState({
             color:e.target.value,
         })
     }
-    onSizeChange(e){
+    onSizeChange=(e)=>{
         this.setState({
             size:e.target.value,
         })
     }
-    onStockChange(e){
+    onStockChange=(e)=>{
         this.setState({
             stock:e.target.value,
         })
     }
-    onSubmit(e){
+    onDiscountChange=(e)=> {
+        this.setState({
+            discountPercentage:e.target.value,
+        })
+        console.log(this.state)
+    }
+    onSubmit=(e)=>{
         e.preventDefault();
 
         const product={
             name:this.state.productname,
             price:this.state.price,
+            discountPercentage:this.state.discountPercentage,
             color:this.state.color,
             size:this.state.size,
             stock:this.state.stock
@@ -58,7 +72,7 @@ export class CreateProducts extends Component {
         console.log(product);
         axios.post("http://localhost:3000/products/add",product)
         .then(res=>console.log(res.data))
-        .catch(err=>console.log(`Error :${err}`)); //YAAAAY 
+        .catch(err=>console.log(`Error :${err}`));
     }
     render() {
         return (
@@ -72,6 +86,10 @@ export class CreateProducts extends Component {
                     <div className="form-group">
                         <label htmlFor="price">Price:</label>
                         <input type="number" className="form-control" id="price" placeholder="Price" onChange={this.onPriceChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="price">Discount Percentage:</label>
+                        <input type="number" className="form-control" id="discountPercentage" placeholder="DiscountPercentage" onChange={this.onDiscountChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="color">Colour:</label>

@@ -5,7 +5,7 @@ const Alketa = props => (
     <tr>
         <td>{props.product.name}</td>
         <td>{props.product.price}</td>
-        <td>{props.product.discountprice}</td>
+        <td>{props.product.discountPercentage}</td>
         <td>{props.product.color}</td>
         <td>{props.product.size}</td>
     </tr>
@@ -35,10 +35,7 @@ export class SalesList extends Component {
     }
 
     ShowingSalesList(){
-            //switch ()
-            //case ()
-            //break
-        return this.state.products.map(currentProduct => {
+        return this.state.products.filter(currentProd=>currentProd.discountPercentage>0).map(currentProduct => {
             return <Alketa product={currentProduct} key={currentProduct._id} />;
         })
     }
@@ -55,7 +52,6 @@ export class SalesList extends Component {
                             <th>Discount price</th>
                             <th>Color</th>
                             <th>Size</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
