@@ -25,7 +25,14 @@ export class CreateProducts extends Component {
              color:"",
              stock:0,
              size:"",
+             visible : false
         }
+    }
+
+    closeModal=()=> {
+        this.setState({
+            visible : false
+        });
     }
     onProductnameChange=(e)=>{
         this.setState({
@@ -58,6 +65,7 @@ export class CreateProducts extends Component {
         })
         console.log(this.state)
     }
+
     onSubmit=(e)=>{
         e.preventDefault();
 
@@ -69,14 +77,16 @@ export class CreateProducts extends Component {
             size:this.state.size,
             stock:this.state.stock
         }
+
         console.log(product);
         axios.post("http://localhost:3000/products/add",product)
         .then(res=>console.log(res.data))
         .catch(err=>console.log(`Error :${err}`));
     }
+
     render() {
         return (
-            <div>
+            <div>   
                 <h3>Create New Product</h3>
                 <form className="mt-4 text-left" onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -107,7 +117,7 @@ export class CreateProducts extends Component {
                 </form>
             </div>
         )
-}
+    }
 }
 
 export default CreateProducts
