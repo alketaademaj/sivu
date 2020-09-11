@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import PopUp from './popUp';
 
 export class CreateProducts extends Component {
     constructor(props) {
@@ -113,8 +114,13 @@ export class CreateProducts extends Component {
                         <label htmlFor="size">Size:</label>
                         <input type="text" className="form-control" id="size" placeholder="Size" onChange={this.onSizeChange}/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" onClick = { () => {this.setState ({ visible:true }) 
+                                                     console.log(this.state)}} className="btn btn-primary">Submit</button>
                 </form>
+                <PopUp show = {this.state.visible}
+                       closeModal = { this.closeModal}
+                >     
+                </PopUp>
             </div>
         )
     }
