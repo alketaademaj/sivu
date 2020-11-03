@@ -11,6 +11,7 @@ import Sales from './components/sales';
 import About from './components/about';
 import CreateProducts from './components/CreateProducts';
 import submitResponse from './components/submitResponse';
+import  UpdateProducts from './components/UpdateProducts';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -28,8 +29,9 @@ function App() {
         <Route path ="/new-arrivals" component = {NewArrivals} />
         <Route path ="/sales" component = {Sales} />
         <Route path ="/about" component = {About} />
-        <Route path ="/products" component = {CreateProducts} />
-        <Route path="/submitResponse" component={submitResponse} />
+        <Route path ="/products" exact component = {CreateProducts} />
+        <Route path ="/products/:id" component={UpdateProducts} />
+        <Route path ="/submitResponse" component={submitResponse} />
         <img src={logo} className="App-logo" alt="logo" />
       {/* </div> */}
     </div>

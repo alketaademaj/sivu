@@ -9,6 +9,7 @@ const Tanay = props => (
         <td>{props.product.size}</td>
         <td>
             <button className="btn btn-sm btn-danger" onClick={() => {props.deleteProducts(props.product._id) }}>Delete</button>
+            <button className="btn btn-sm btn-success" onClick={() => window.location = `/products/${props.product._id}`}>Update</button>
         </td>
     </tr>
 )
@@ -18,7 +19,8 @@ export class ProductsList extends Component {
     constructor(props) {
         super(props)
     
-        this.deletetheseProducts = this.deletetheseProducts.bind(this); //these two have to match the line 41
+        this.deletetheseProducts = this.deletetheseProducts.bind(this); //these two have to match the line 43 method
+        
 
         this.state = {
             products: []
@@ -38,7 +40,7 @@ export class ProductsList extends Component {
         })
     }
 
-    deletetheseProducts(id) { //match this one with the above binding one
+    deletetheseProducts(id) { //match this one with the above binding one + passing id as an argument (props....), look above 
         axios.delete('http://localhost:3000/products/'+id)
         .then(res => console.log(res.data));
 

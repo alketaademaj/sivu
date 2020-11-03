@@ -7,8 +7,8 @@ router.route('/').get((req,res)=>{
         .catch(err=>res.status(400).json('Error:'+err));
 });
 
-router.route('/:id').get((req, res) => {
-    Product.findById(req.params.id)
+router.route('/:id').get((req, res) => { //endpoints / (id) its called endpoint because its the last piece of URL 
+    Product.findById(req.params.id)    
     .then(product => res.json(product))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -33,4 +33,5 @@ router.route('/add').post((req, res) => {
         .then(() => res.json('Product added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
 module.exports = router;
