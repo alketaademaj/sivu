@@ -110,7 +110,12 @@ export class UpdateProducts extends Component {
     render() {
         
         let homePage = () => {
-            window.location= "/";
+            // eslint-disable-next-line
+            if(this.state.discountPercentage == null || this.state.discountPercentage == 0){
+            window.location = "/"
+            } else {
+                window.location = "/sales"
+            }
         };
 
         return (
@@ -124,16 +129,16 @@ export class UpdateProducts extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Price:</label>
-                        <input type="number" className="form-control" id="price" placeholder="Price" onChange={this.onPriceChange}   value={this.state.price}
+                        <input type="number" className="form-control" id="price" placeholder="Price" onChange={this.onPriceChange} value={this.state.price}
               required/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Discount Percentage:</label>
-                        <input type="number" className="form-control" id="discountPercentage" placeholder="DiscountPercentage" onChange={this.onDiscountChange}    value={this.state.discountPercentage}/>
+                        <input type="number" className="form-control" id="discountPercentage" placeholder="DiscountPercentage" onChange={this.onDiscountChange} value={this.state.discountPercentage}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="color">Colour:</label>
-                        <input type="text" className="form-control" id="color" placeholder="Color" onChange={this.onColorChange}    value={this.state.color}/>
+                        <input type="text" className="form-control" id="color" placeholder="Color" onChange={this.onColorChange} value={this.state.color}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="stock">Stock:</label>
