@@ -85,7 +85,12 @@ export class CreateProducts extends Component {
         .catch(err=>console.log(`Error :${err}`));
     }
 
-    render() {
+    render() { 
+
+        let homePage = () => {
+            window.location= "/";
+        };
+        
         return (
             <div>   
                 <h3>Create New Product</h3>
@@ -119,6 +124,7 @@ export class CreateProducts extends Component {
                 </form>
                 <PopUp show = {this.state.visible}
                        closeModal = { this.closeModal}
+                       homePage = {homePage}
                 >     
                 </PopUp>
             </div>

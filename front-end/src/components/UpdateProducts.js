@@ -21,7 +21,7 @@ export class UpdateProducts extends Component {
         
         this.state = {
             id:"",
-             productname:"",
+             productname: "",
              price:0,
              discountPercentage: 0,
              color:"",
@@ -29,6 +29,27 @@ export class UpdateProducts extends Component {
              size:"",
              visible : false
         }
+    }
+
+    componentDidMount() {
+        
+        axios.get('http://localhost:3000/products/' + this.props.match.params.id)
+        .then((res) => {  
+            console.log(res.data._id)  
+            this.setState({
+              id: res.data._id,
+              productname: res.data.name,
+              price: res.data.price,
+              discountPercentage: res.data.discountPercentage,
+              color: res.data.color,
+              stock: res.data.stock,
+              size: res.data.size,
+            });
+            console.log(this.state);
+          })
+          .catch((err) => {
+            console.log(`Error: ${err}`);
+          });
     }
 
     closeModal=()=> {
@@ -71,7 +92,7 @@ export class UpdateProducts extends Component {
     onSubmit=(e)=>{
         e.preventDefault();
 
-        const product={
+        const product={ //the body that is send to backend 
             name:this.state.productname,
             price:this.state.price,
             discountPercentage:this.state.discountPercentage,
@@ -81,66 +102,53 @@ export class UpdateProducts extends Component {
         }
 
         console.log(product);
-        axios.post("http://localhost:3000/products/add",product)
+        axios.put(`http://localhost:3000/products/${this.state.id}`, product) //for update, use put
         .then(res=>console.log(res.data))
         .catch(err=>console.log(`Error :${err}`));
     }
 
-    componentDidMount() {
-        
-        axios.get('http://localhost:3000/products/' + this.props.match.params.id)
-        .then((res) => {  
-            console.log(res.data._id)  
-            this.setState({
-              id: res.data._id,
-              productname: res.data.name,
-              price: res.data.price,
-              discountPercentage: res.data.discountPercentage,
-              color: res.data.color,
-              stock: res.data.stock,
-              size: res.data.size,
-            });
-            console.log(this.state);
-          })
-          .catch((err) => {
-            console.log(`Error: ${err}`);
-          });
-    }
-
     render() {
+        
+        let homePage = () => {
+            window.location= "/";
+        };
+
         return (
             <div>   
                 <h3>Update New Product</h3>
                 <form className="mt-4 text-left" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="productname">Product name:</label>
-                        <input type="text" className="form-control" id="productname" placeholder="Product name" onChange={this.onProductnameChange} />
+                        <input type="text" className="form-control" id="productname" placeholder="Product name" onChange={this.onProductnameChange} value={this.state.productname}
+              required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Price:</label>
-                        <input type="number" className="form-control" id="price" placeholder="Price" onChange={this.onPriceChange} />
+                        <input type="number" className="form-control" id="price" placeholder="Price" onChange={this.onPriceChange}   value={this.state.price}
+              required/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Discount Percentage:</label>
-                        <input type="number" className="form-control" id="discountPercentage" placeholder="DiscountPercentage" onChange={this.onDiscountChange} />
+                        <input type="number" className="form-control" id="discountPercentage" placeholder="DiscountPercentage" onChange={this.onDiscountChange}    value={this.state.discountPercentage}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="color">Colour:</label>
-                        <input type="text" className="form-control" id="color" placeholder="Color" onChange={this.onColorChange}/>
+                        <input type="text" className="form-control" id="color" placeholder="Color" onChange={this.onColorChange}    value={this.state.color}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="stock">Stock:</label>
-                        <input type="number" className="form-control" id="stock" placeholder="Stock" onChange={this.onStockChange}/>
+                        <input type="number" className="form-control" id="stock" placeholder="Stock" onChange={this.onStockChange} value={this.state.stock}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="size">Size:</label>
-                        <input type="text" className="form-control" id="size" placeholder="Size" onChange={this.onSizeChange}/>
+                        <input type="text" className="form-control" id="size" placeholder="Size" onChange={this.onSizeChange}  value={this.state.size}/>
                     </div>
                     <button type="submit" onClick = { () => {this.setState ({ visible:true }) 
-                                                     console.log(this.state)}} className="btn btn-primary">Submit</button>
+                                                     console.log(this.state)}} className="btn btn-primary">Update</button>
                 </form>
                 <PopUp show = {this.state.visible}
-                       closeModal = { this.closeModal}
+                       closeModal = {this.closeModal}
+                       homePage = {homePage}
                 >     
                 </PopUp>
             </div>

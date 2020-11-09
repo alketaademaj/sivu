@@ -19,6 +19,12 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });   
 
+router.route('/:id').put((req, res) => {
+    Product.findByIdAndUpdate(req.params.id, req.body) // accessing id from req.params.id = URL -> it is reading URL 
+    .then(() => res.json('Our products ihihihi are updated.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});  
+
 router.route('/add').post((req, res) => {
     const name = req.body.name;
     const price = req.body.price;

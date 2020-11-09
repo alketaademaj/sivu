@@ -8,6 +8,10 @@ const Alketa = props => (
         <td>{props.product.discountPercentage}</td>
         <td>{props.product.color}</td>
         <td>{props.product.size}</td>
+         <td>
+                <button className="btn btn-sm btn-danger" onClick={() => {props.deleteProducts(props.product._id) }}>Delete</button>
+                <button className="btn btn-sm btn-success" onClick={() => window.location = `/products/${props.product._id}`}>Update</button>
+        </td>
     </tr>
 )
 
@@ -15,6 +19,8 @@ export class SalesList extends Component {
 
     constructor(props) {
         super(props)
+        
+        this.deletetheseProducts = this.deletetheseProducts.bind(this);
 
         this.state = {
             products: []
@@ -34,9 +40,18 @@ export class SalesList extends Component {
         })
     }
 
+    deletetheseProducts(id) { 
+        axios.delete('http://localhost:3000/products/'+id)
+        .then(res => console.log(res.data));
+
+        this.setState({
+            products: this.state.products.filter(el => el._id !== id)
+        })
+    }
+
     ShowingSalesList(){
         return this.state.products.filter(currentProd=>currentProd.discountPercentage>0).map(currentProduct => {
-            return <Alketa product={currentProduct} key={currentProduct._id} />;
+            return <Alketa product={currentProduct} deleteProducts={this.deletetheseProducts} key={currentProduct._id} />; //passing the method as a property 
         })
     }
 
@@ -52,6 +67,7 @@ export class SalesList extends Component {
                             <th>Discount price</th>
                             <th>Color</th>
                             <th>Size</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

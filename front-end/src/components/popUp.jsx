@@ -3,7 +3,6 @@ import { Modal, Button } from "react-bootstrap";
 
 export class PopUp extends Component {
     render() {
-        console.log(this.props);
         return (
             <div>
                 <Modal show={ this.props.show } onHide={ this.props.closeModal }>
@@ -15,7 +14,7 @@ export class PopUp extends Component {
                     <Button variant="secondary" onClick={this.props.closeModal}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={this.props.closeModal}>
+                    <Button variant="primary" onClick={this.props.homePage}>
                         Save Changes
                     </Button>
                     </Modal.Footer>
