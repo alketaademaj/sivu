@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const Tanay = props => (
     <tr>
-        <td>{props.product.name}</td>
+        <td>{props.product.name}</td> 
         <td>{props.product.price}</td>
         <td>{props.product.color}</td>
         <td>{props.product.size}</td>
